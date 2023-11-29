@@ -8,7 +8,7 @@ document.getElementById("bookForm").addEventListener("submit", function (e) {
   e.preventDefault();
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;
-  const year = document.getElementById("year").value;
+  const year = Number(document.getElementById("year").value);git 
   const isComplete = document.getElementById("isComplete").checked;
 
   const book = { id: Date.now(), title, author, year, isComplete };
