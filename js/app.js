@@ -15,6 +15,10 @@ document.getElementById("bookForm").addEventListener("submit", function (e) {
   }
 });
 
+document.getElementById("searchInput").addEventListener("input", function (e) {
+  renderBooks(e.target.value);
+});
+
 function editBook(id) {
   currentEdit = id;
   const book = books.find((book) => book.id === id);
