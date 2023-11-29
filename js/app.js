@@ -4,49 +4,63 @@ if (localStorage.getItem("books")) {
   renderBooks();
 }
 
+let currentEdit = null;
+
 document.getElementById("bookForm").addEventListener("submit", function (e) {
   e.preventDefault();
-  const title = document.getElementById("title").value;
-  const author = document.getElementById("author").value;
-  const year = Number(document.getElementById("year").value);
-
-  // Tambahkan validasi untuk memastikan bahwa semua field telah diisi
-  if (!title || !author || !year) {
-    document.getElementById("errorMessage").innerText = "Harap isi semua field!";
-    return;
+  if (currentEdit) {
+    updateBook(currentEdit);
+  } else {
+    addBook();
   }
-
-  document.getElementById("errorMessage").innerText = ""; // Kosongkan pesan kesalahan jika semua field telah diisi
-  const isComplete = document.getElementById("isComplete").checked;
-  const book = { id: Date.now(), title, author, year, isComplete };
-  books.push(book);
-  localStorage.setItem("books", JSON.stringify(books));
-  renderBooks();
-  clearForm();
 });
 
 function editBook(id) {
+  currentEdit = id;
   const book = books.find((book) => book.id === id);
   document.getElementById("title").value = book.title;
   document.getElementById("author").value = book.author;
   document.getElementById("year").value = book.year;
   document.getElementById("isComplete").checked = book.isComplete;
   document.getElementById("editMessage").style.display = "block"; // Show the message
-  document.getElementById("bookForm").onsubmit = function (e) {
-    e.preventDefault();
-    book.title = document.getElementById("title").value;
-    book.author = document.getElementById("author").value;
-    book.year = document.getElementById("year").value;
-    book.isComplete = document.getElementById("isComplete").checked;
-    localStorage.setItem("books", JSON.stringify(books));
-    renderBooks();
-    // Clear the form inputs after the book details have been updated
-    document.getElementById("title").value = "";
-    document.getElementById("author").value = "";
-    document.getElementById("year").value = "";
-    document.getElementById("isComplete").checked = false;
-    document.getElementById("editMessage").style.display = "none"; // Hide the message
-  };
+}
+
+function updateBook(id) {
+  const book = books.find((book) => book.id === id);
+  book.title = document.getElementById("title").value;
+  book.author = document.getElementById("author").value;
+  book.year = document.getElementById("year").value;
+  book.isComplete = document.getElementById("isComplete").checked;
+  localStorage.setItem("books", JSON.stringify(books));
+  renderBooks();
+  clearForm();
+  currentEdit = null;
+  document.getElementById("editMessage").style.display = "none"; // Hide the message
+}
+
+function addBook() {
+  const title = document.getElementById("title").value;
+  const author = document.getElementById("author").value;
+  const year = Number(document.getElementById("year").value);
+
+  // Tambahkan validasi untuk memastikan bahwa semua field telah diisi
+  if (!title || !author || !year) {
+    return;
+  }
+
+  const isComplete = document.getElementById("isComplete").checked;
+  const book = { id: Date.now(), title, author, year, isComplete };
+  books.push(book);
+  localStorage.setItem("books", JSON.stringify(books));
+  renderBooks();
+  clearForm();
+}
+
+function clearForm() {
+  document.getElementById("title").value = "";
+  document.getElementById("author").value = "";
+  document.getElementById("year").value = "";
+  document.getElementById("isComplete").checked = false;
 }
 
 function deleteBook(id) {
