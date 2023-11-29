@@ -9,21 +9,20 @@ document.getElementById("bookForm").addEventListener("submit", function (e) {
   const title = document.getElementById("title").value;
   const author = document.getElementById("author").value;
   const year = Number(document.getElementById("year").value);
-  const isComplete = document.getElementById("isComplete").checked;
 
+  // Tambahkan validasi untuk memastikan bahwa semua field telah diisi
+  if (!title || !author || !year) {
+    document.getElementById("errorMessage").innerText = "Harap isi semua field!";
+    return;
+  }
+
+  document.getElementById("errorMessage").innerText = ""; // Kosongkan pesan kesalahan jika semua field telah diisi
+  const isComplete = document.getElementById("isComplete").checked;
   const book = { id: Date.now(), title, author, year, isComplete };
   books.push(book);
   localStorage.setItem("books", JSON.stringify(books));
   renderBooks();
-  // Kosongkan input setelah submit
-  document.getElementById("title").value = "";
-  document.getElementById("author").value = "";
-  document.getElementById("year").value = "";
-  document.getElementById("isComplete").checked = false;
-});
-
-document.getElementById("search").addEventListener("input", function (e) {
-  renderBooks(e.target.value);
+  clearForm();
 });
 
 function editBook(id) {
