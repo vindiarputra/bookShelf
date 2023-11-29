@@ -1,0 +1,156 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+header {
+  text-align: center;
+}
+
+header h1 {
+  filter:drop-shadow(16px 7px 5px #2c2729);
+}
+
+h2 {
+  color: #333;
+}
+#container {
+  margin: auto;
+}
+
+
+#incompleteBookshelf,
+#completeBookshelf {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  width: 70%;
+  padding: 0 2rem;
+  align-items: center;
+}
+
+#deleteBook {
+  background-color: rgb(225, 97, 97)
+}
+
+#deleteBook:hover {
+  background-color: rgb(201, 64, 64)
+}
+
+#moveBook {
+  background-color: rgb(102, 202, 102);
+}
+
+#moveBook:hover {
+  background-color: rgb(64, 190, 64);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#bookForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+#searchBook {
+  text-align: center;
+}
+
+#bookFormWrapper {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#bookForm,
+#searchBook,
+#bookFormWrapper {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  width: 80%;
+  text-align: center;
+}
+
+#searchBook input[type="text"] {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 80%;
+}
+
+#bookForm input[type="text"],
+#bookForm input[type="number"] {
+  margin: auto;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: fit-content;
+  flex: 1 0 10rem;
+}
+
+#bookForm input[type="file"] {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: auto;
+  padding: 10px;
+}
+
+#bookForm button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+#bookForm button:hover {
+  background-color: #0056b3;
+}
+
+.book-card {
+  max-width: 60%;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.book-card img {
+  width: 100%;
+  object-fit: cover;
+  aspect-ratio: 4/3;
+}
+
+.book-card button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.book-card button:hover {
+  background-color: #0056b3;
+}
